@@ -14,10 +14,7 @@ namespace DatingApp.API.Controllers
     {
         private readonly DataContext _context;
 
-        public ValuesController(DataContext context)
-        {
-            _context = context;
-        }
+        public ValuesController(DataContext context) { _context = context; }
 
         // GET api/values
         [HttpGet]
