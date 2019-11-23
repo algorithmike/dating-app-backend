@@ -49,7 +49,7 @@ namespace DatingApp.API.Data
 
         public async Task<bool> UserExists(string username)
         {
-            return await _context.FindAsync<string>(username) != null;
+            return await _context.Users.AnyAsync(x => x.Username == username);
         }
         // End - IAuthRepository implementation
 

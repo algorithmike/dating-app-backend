@@ -19,14 +19,17 @@ namespace DatingApp.API.Controllers
 
         public AuthController(IAuthRepository repo) { _repo = repo; }
 
-        [HttpPost]
+        [HttpPost("register")]
         public async Task<IActionResult> Register(UserForRegisterDTO userForRegisterDTO)
         {
             // validate request
 
             userForRegisterDTO.Username = userForRegisterDTO.Username.ToLower();
 
-            if (await _repo.UserExists(userForRegisterDTO.Username)) return BadRequest("Username already exists.");
+            if (await _repo.UserExists(userForRegisterDTO.Username))
+            {
+                return BadRequest("Username already exists.");
+            }
 
             var user = await _repo.Register(new User { Username = userForRegisterDTO.Username }, userForRegisterDTO.Password);
 
