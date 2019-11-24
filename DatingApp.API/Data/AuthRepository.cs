@@ -26,9 +26,10 @@ namespace DatingApp.API.Data
         public async Task<User> Login(string username, string password)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Username == username);
-            var saltyHash = new SaltyHash(user.PasswordSalt, user.PasswordHash);
 
             if (user == null) return null;
+
+            var saltyHash = new SaltyHash(user.PasswordSalt, user.PasswordHash);
 
             if (!VerifyPasswordHash(password, saltyHash)) return null;
 
