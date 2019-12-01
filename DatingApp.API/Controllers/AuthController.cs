@@ -51,7 +51,9 @@ namespace DatingApp.API.Controllers
                 .Login(userForLoginDTO.Username.ToLower(), userForLoginDTO.Password);
 
             if (userFromRepo == null)
-                return Unauthorized("Unauthorized");
+            {
+                return Unauthorized();
+            }
 
             var claims = new[]
             {
